@@ -1,0 +1,51 @@
+.navbar {
+    background: linear-gradient(to left, #2f7593, #272931); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: auto;
+}
+
+.nav-link{
+    color: white !important;
+    margin-right: 10px;
+}
+.nav-link:hover{
+    background-color: #272931;
+}
+.nav-link-active{
+    border-bottom: solid;
+    border-bottom-width: 20%;
+}
+
+.icon{
+    width: 30px;
+}
+
+.nav-dropdown{
+    .dropdown-menu{
+        background: linear-gradient(to left, #82858a, #272931);
+        a.nav-link{
+            padding: 0.25rem 1.5rem;
+        }
+        .nav-link-active{
+            border-bottom: none;
+            border-left: solid;
+        }
+    }
+    
+}
+
+.header-brand {
+    font-family: 'Courier New', monospace;
+    color: white;
+    margin-left: 50px;
+    width: 100px;
+}
+
+.search-icon {
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 991px){
+    .nav-link{
+        text-align: center;
+    }
+}

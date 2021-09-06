@@ -1,0 +1,43 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.container {
+    padding: 0 100px;
+}
+
+.home__row > * {
+    @extend .flex-wrap, .justify-content-center;
+    margin-top: 20px;
+}
+
+.col {
+    @extend .d-flex, .flex-column, .align-items-center;
+}
+
+.home {
+    margin: 0px 40px;
+}
+
+.home__pagination {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.product {
+    width: 250px;
+    height: 300px;
+    transition: transform 0.2s;
+
+    .product__image {
+        height: 50%;
+    }
+
+    .product__title {
+        font-weight: 800;
+    }
+}
+
+.product:hover {
+    border: 1px solid #2f7593;
+    transform: scale(1.1);
+}
