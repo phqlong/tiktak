@@ -1,7 +1,7 @@
 # Tiktak Watch E-commerce Website with Paypal Integration
 Link Backend Hosting: https://tiktakwatch.herokuapp.com/  
 Link Frontend Hosting: https://tiktakwatch.netlify.app/  
-* Frontend: ReactJS, Redux (redux toolkits), Axios.
+* Frontend: ReactJS, Redux (redux toolkits), Axios, React-Bootstrap
 * Backend: Django, Django Rest API framework, JWT authentication
 * Database: PostgreSQL  
 
