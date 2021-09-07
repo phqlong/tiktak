@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import orderAPI from 'api/orderAPI'
-import queryString from 'query-string';
 
 
 // MyOrderList ==============================================================================================

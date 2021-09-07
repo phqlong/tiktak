@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { FaSignOutAlt, FaShoppingCart, FaUserAlt, FaEdit, FaClipboardList, FaProductHunt } from 'react-icons/fa'
+import { FaSignOutAlt, FaShoppingCart, FaUserAlt, FaClipboardList, FaProductHunt } from 'react-icons/fa'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import SearchBar from "components/SearchBar";
