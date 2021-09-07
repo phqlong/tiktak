@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const orderAPI = {
     getMyOrders: () => {
-        const url = '/orders/myorders';
+        const url = '/orders/myorders/';
         return axiosClient.get(url);
     },
 

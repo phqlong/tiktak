@@ -12,6 +12,7 @@ import ProductDetail from "pages/ProductDetail";
 import Cart from "pages/Cart";
 import Checkout from "pages/Checkout";
 import OrderDetail from "pages/OrderDetail";
+import Profile from "pages/Profile";
 
 
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/order/:id" component={OrderDetail} />
+            <Route path="/profile" component={Profile} />
 
             {/* <Route path="/tutorials/:id" component={Tutorial} /> */}
           </Switch>

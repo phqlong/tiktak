@@ -3,33 +3,41 @@ import orderAPI from 'api/orderAPI'
 import queryString from 'query-string';
 
 
-// orderList ==============================================================================================
+// MyOrderList ==============================================================================================
 
-export const fetchOrderList = createAsyncThunk('orderList/fetchOrderList', async (filters) => {
-    const paramsString = queryString.stringify(filters);
-    const response = await orderAPI.getAll(paramsString)
+export const fetchMyOrders = createAsyncThunk('orderProfile/fetchMyOrders', async () => {
+    const response = await orderAPI.getMyOrders()
     return response.data;
 });
 
-const OrderListSlice = createSlice({
-    name: 'orderList',
+const OrderProfileSlice = createSlice({
+    name: 'orderProfile',
     initialState: {
         orders: [],
-        page: 1,
-        pages: 1
+        error: 1,
+        loading: 1
     },
 
     reducers: {
     },
     extraReducers: {
-        [fetchOrderList.fulfilled]: (state, action) => {
-            state.orders = action.payload.orders
-            state.page = action.payload.page
-            state.pages = action.payload.pages
+        [fetchMyOrders.fulfilled]: (state, action) => {
+            state.loading = false
+            state.orders = action.payload
+            state.error = null
+        },
+        [fetchMyOrders.pending]: (state, action) => {
+            state.loading = true
+        },
+        [fetchMyOrders.rejected]: (state, action) => {
+            state.loading = false
+            state.error = action.error.response && action.error.response.data.detail
+                ? action.error.response.data.detail
+                : action.error.message
         },
     },
 })
-export const OrderListReducer = OrderListSlice.reducer
+export const OrderProfileReducer = OrderProfileSlice.reducer
 
 
 // orderDetail ==============================================================================================

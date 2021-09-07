@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import psycopg2
 import dj_database_url
 import os
 from datetime import timedelta
@@ -27,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'nwtd+of*+uef5o6-3slg%3l2m74s+*puxvecutbako6u)33!jv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'tiktakwatch.herokuapp.com']
 
 
 # Application definition
@@ -132,15 +133,26 @@ WSGI_APPLICATION = 'tiktak.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tiktak',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd86bad5d4lcpuv',
+        'USER': 'jziedozrhgxpuy',
+        'PASSWORD': '9b43364fe98d22d91aa3f6a4f42ab131fc1f6cf87d54061aca519a797cef6313',
+        'HOST': 'ec2-44-198-80-194.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'tiktak',
+#         'USER': 'postgres',
+#         'PASSWORD': 'admin',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
+# DATABASE_URL = os.environ['DATABASE_URL']
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -178,24 +190,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+# PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
 # Extra lookup directories for collectstatic to find static files
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static',
-#     BASE_DIR / 'frontend/build/static'
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    # BASE_DIR / 'frontend/build/static'
+]
 
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
@@ -216,7 +226,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
-prod_db = dj_database_url.config(conn_max_age=500)
+prod_db = dj_database_url.config(conn_max_age=500, ssl_require=True)
 DATABASES['default'].update(prod_db)
 
 if os.getcwd() == '/app':

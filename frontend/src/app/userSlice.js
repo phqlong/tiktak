@@ -12,11 +12,23 @@ export const register = createAsyncThunk('user/register', async (params) => {
     return response.data;
 });
 
+export const updateProfile = createAsyncThunk('user/updateProfile', async (data) => {
+    const response = await userAPI.updateUserProfile(data)
+    return response.data;
+});
+
+export const getProfile = createAsyncThunk('user/getProfile', async (id) => {
+    const response = await userAPI.getUserProfile(id)
+    return response.data;
+});
+
 const UserSlice = createSlice({
     name: 'user',
     initialState: {
-        error: null,
         userInfo: JSON.parse(localStorage.getItem("userInfo")), // get userInfo saved in local every refresh page
+        error: null,
+        loading: false,
+        success: false,
     },
 
     reducers: {
@@ -39,7 +51,6 @@ const UserSlice = createSlice({
                 : action.error.message
         },
 
-
         [register.fulfilled]: (state, action) => {
             state.userInfo = action.payload
             state.error = null
@@ -47,6 +58,35 @@ const UserSlice = createSlice({
         },
         [register.rejected]: (state, action) => {
             state.userInfo = null
+            state.error = action.error.response && action.error.response.data.detail
+                ? action.error.response.data.detail
+                : action.error.message
+        },
+
+        [getProfile.fulfilled]: (state, action) => {
+            state.userInfo = action.payload
+            state.error = null
+            localStorage.setItem("userInfo", JSON.stringify(action.payload))
+        },
+        [getProfile.rejected]: (state, action) => {
+            state.error = action.error.response && action.error.response.data.detail
+                ? action.error.response.data.detail
+                : action.error.message
+        },
+
+        [updateProfile.fulfilled]: (state, action) => {
+            state.loading = false
+            state.success = true
+            state.userInfo = action.payload
+            state.error = null
+            localStorage.setItem("userInfo", JSON.stringify(action.payload))
+        },
+        [updateProfile.pending]: (state, action) => {
+            state.loading = true
+        },
+        [updateProfile.rejected]: (state, action) => {
+            state.loading = false
+            state.success = false
             state.error = action.error.response && action.error.response.data.detail
                 ? action.error.response.data.detail
                 : action.error.message
