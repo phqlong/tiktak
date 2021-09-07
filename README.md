@@ -5,15 +5,6 @@ Link Frontend Hosting: https://tiktakwatch.netlify.app/
 * Backend: Django, Django Rest API framework, JWT authentication
 * Database: PostgreSQL  
 
-## All pages
-* Home, Search
-* Product Detail
-* Cart
-* Checkout
-* Order Detail
-* User Profile
-* Login
-* Register
 
 ## Highlight Features
 * Shopping cart features
@@ -23,6 +14,17 @@ Link Frontend Hosting: https://tiktakwatch.netlify.app/
 * Change User profile
 * Checkout process (shipping, payment method)
 * PayPal and credit card Integration
+
+
+## All pages
+* Home, Search
+* Product Detail
+* Cart
+* Checkout
+* Order Detail
+* User Profile
+* Login
+* Register
 
 
 ## Download & Setup Instructions
